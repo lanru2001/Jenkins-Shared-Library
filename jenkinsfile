@@ -74,7 +74,7 @@ pipeline {
              
             steps {   
                 
-                dockerPush ('https://us.gcr.io', 'com.dynamicitsolutions','utm-service','1.0.8-40','us.gcr.io', 'vc-infrastructure')
+                dockerPush ('https://us.gcr.io', 'com.dynamicitsolutions','payment-service','1.0.8-40','us.gcr.io', 'dynamic-infrastructure')
             }    
            
         }
@@ -83,7 +83,7 @@ pipeline {
             
              steps {  
                  
-                deployToDevCluster( 'dev-shared-k8s','us-central1-a','dynamicitsolutions','/var/lib/jenkins/workspace/utm-service-pipeline/helm','utm-service-app','utm-service-app','com.dynamicitsolutions','utm-service','1.0.8-39','us.gcr.io','vc-infrastructure','vc-dev-1')
+                deployToDevCluster( 'dev-k8s','us-central1-a','dynamicitsolutions','/var/lib/jenkins/workspace/payment-service-pipeline/helm','payment-service-app','payment-service-app','com.dynamicitsolutions','payment-service','1.0.8-39','us.gcr.io','dynamic-infrastructure','dynamic-dev-1')
             
             }  
            
