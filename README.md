@@ -1,5 +1,5 @@
 
-## What Is a Shared Library in Jenkins?
+## What is a Shared Library in Jenkins?
 
 A shared library in Jenkins is a collection of Groovy scripts shared between different Jenkins jobs. To run the scripts, they are pulled into a Jenkinsfile.
 
