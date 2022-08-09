@@ -83,7 +83,7 @@ pipeline {
             
              steps {  
                  
-                deployToDevCluster( 'dev-k8s','us-central1-a','dynamicitsolutions','/var/lib/jenkins/workspace/payment-service-pipeline/helm','payment-service-app','payment-service-app','com.dynamicitsolutions','payment-service','1.0.8-39','us.gcr.io','dynamic-infrastructure','dynamic-dev-1')
+                deployToCluster( 'dev-k8s','us-central1-a','dynamicitsolutions','/var/lib/jenkins/workspace/payment-service-pipeline/helm','payment-service-app','payment-service-app','com.dynamicitsolutions','payment-service','1.0.8-39','us.gcr.io','dynamic-infrastructure','dynamic-dev-1')
             
             }  
            
@@ -93,7 +93,7 @@ pipeline {
             
              steps {  
                  
-                deployToDevCluster( 'uat-k8s','us-central1-a','dynamicitsolutions','/var/lib/jenkins/workspace/payment-service-pipeline/helm','payment-service-app','payment-service-app','com.dynamicitsolutions','payment-service','1.0.8-39','us.gcr.io','dynamic-infrastructure','dynamic-uat-1')
+                deployToCluster( 'uat-k8s','us-central1-a','dynamicitsolutions','/var/lib/jenkins/workspace/payment-service-pipeline/helm','payment-service-app','payment-service-app','com.dynamicitsolutions','payment-service','1.0.8-39','us.gcr.io','dynamic-infrastructure','dynamic-uat-1')
             
             }  
            
@@ -118,7 +118,7 @@ pipeline {
             
              steps {  
                  
-                deployToDevCluster( 'prod-k8s','us-central1-a','dynamicitsolutions','/var/lib/jenkins/workspace/payment-service-pipeline/helm','payment-service-app','payment-service-app','com.dynamicitsolutions','payment-service','1.0.8-39','us.gcr.io','dynamic-infrastructure','dynamic-prod-1')
+                deployToCluster( 'prod-k8s','us-central1-a','dynamicitsolutions','/var/lib/jenkins/workspace/payment-service-pipeline/helm','payment-service-app','payment-service-app','com.dynamicitsolutions','payment-service','1.0.8-39','us.gcr.io','dynamic-infrastructure','dynamic-prod-1')
             
             }  
            
