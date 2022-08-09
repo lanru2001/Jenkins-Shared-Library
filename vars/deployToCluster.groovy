@@ -14,7 +14,7 @@ def call( String devCluster, String devClusterZone , String nameSpace , String h
                 sh " kubectl get all -n ${nameSpace} "
                 sh " helm version "
                 //sh " cd  ${helmPath}   && helm install --namespace ${nameSpace}   ${helmChart}    ${helmRelease}  "
-                sh " cd ${helmPath}   &&  helm upgrade --namespace ${nameSpace}   -f  utm-service-app/values.yaml  --set image.repository=${hostName}/${infraProjectId}/${imageName}/${serviceName}  --set image.tag=${version}   --install ${helmChart}  ${helmRelease} "
+                sh " cd ${helmPath}   &&  helm upgrade --namespace ${nameSpace}   -f  payment-service-app/values.yaml  --set image.repository=${hostName}/${infraProjectId}/${imageName}/${serviceName}  --set image.tag=${version}   --install ${helmChart}  ${helmRelease} "
                                 
 
             }
