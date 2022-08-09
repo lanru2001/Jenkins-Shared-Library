@@ -1,0 +1,93 @@
+@Library('asgard-jenkins-shared-lib') _
+
+pipeline {
+    
+    agent any 
+        
+    stages {
+
+        
+        stage('Cloning Git') {
+            
+            steps {
+           
+                gitCheckout ( 'master' , 'https://olanrewaju-sysnets@bitbucket.org/vikingcloud/utm-service.git' , '243e5b59-0ae3-4036-999b-02c2f6e6b6f4' )
+            }
+        }
+  
+        stage('Build') {
+            
+            tools {
+              jdk 'JDK 12'
+            }
+           
+            steps {
+           
+                dockerBuild ()
+                
+            }
+           
+        }
+        
+        stage('Version') {
+            
+            steps {
+                
+               gradleVersion ()
+               
+            }
+            
+           
+        }
+        
+        stage('Service Name') {
+            steps {
+                asgardServiceName ()
+            }
+        }
+        
+        stage('Code Analysis') {
+            
+            tools {
+               jdk "JDK 12"
+            }
+            
+            steps {
+                
+                withSonarQubeEnv('sonar-instance') { 
+                    sh './gradlew sonarqube'
+                }
+            }   
+            
+        }
+        
+        stage("Quality Gate") {
+            
+            steps {
+                timeout(time: 1, unit: 'MINUTES') {
+                    waitForQualityGate abortPipeline: true
+                } 
+            }
+        }
+        
+        stage('Push to Infra') {
+             
+            steps {   
+                
+                dockerPush ('https://us.gcr.io', 'com.vikingcloud','utm-service','1.0.8-40','us.gcr.io', 'vc-infrastructure')
+            }    
+           
+        }
+        
+        stage('Deploy to Dev Cluster') {
+            
+             steps {  
+                 
+                deployToDevCluster( 'dev-shared-k8s','us-central1-a','viking-cloud','/var/lib/jenkins/workspace/utm-service-pipeline/helm','utm-service-app','utm-service-app','com.vikingcloud','utm-service','1.0.8-39','us.gcr.io','vc-infrastructure','vc-dev-1')
+            
+            }  
+           
+        } 
+        
+    }
+}
