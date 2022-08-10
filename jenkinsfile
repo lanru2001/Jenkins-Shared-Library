@@ -11,7 +11,7 @@ pipeline {
             
             steps {
            
-                gitCheckout ( 'master' , 'https://********' , '123456' )
+                gitCheckout ( 'master' , 'your source code url' , 'your source code token' )
             }
         }
   
