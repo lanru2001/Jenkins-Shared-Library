@@ -79,7 +79,7 @@ pipeline {
            
         }
         
-        stage('Deploy to DEV Cluster') {
+        stage('Deploy to Dev Cluster') {
             
              steps {  
                  
