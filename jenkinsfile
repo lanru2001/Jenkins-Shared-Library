@@ -11,7 +11,7 @@ pipeline {
             
             steps {
            
-                gitCheckout ( 'master' , '' , '' )
+                gitCheckout ( 'master' , 'https://github.com/lanru2001/Jenkins-Shared-Library.git' , '' )
             }
         }
   
